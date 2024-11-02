@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>	
 </head>
 <body>
      <form action="" method="POST">
@@ -33,7 +35,7 @@
 		$email =$_POST['email'];
 		$password =$_POST['pswd'];
 
-	$users =$conn->query("SELECT * FROM users WHERE email='$email' AND password='$password'");
+	$users =$conn->query("SELECT * FROM `users` '");
 	$result =$users->fetch_array();
 	$row = $users->num_rows;
 	if ($row > 0){
