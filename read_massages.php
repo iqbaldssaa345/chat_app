@@ -27,3 +27,47 @@ $stmt =$stmt->fetchAll();
     </tr>
     <?php endforeach; ?>
 </table>
+<form action="messagefrom">
+    Chat:
+    <select name="user_id" id="user_id">
+      <!-- Opsi user diisi melalui PHP -->
+    </select>
+    Message: <textarea name="message" id="message"required></textarea>
+    <button type="submit">Kirim</button>
+</form>
+
+<div id="message"></div>
+
+<script>
+    document.getElementById('messageFrom').addEventListener('submit',
+    function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('send_message.php', {
+            method: 'POST',
+            body:formData
+        })
+        .then(response => response.json())
+        .then(data =>{
+            if(data.success){
+            loadMassages();
+            document.getElementById('message').value = '';
+            // Clear the message input
+            }else{
+                alert('Error: ' +data.error);
+            }
+    });
+});
+function loadMassages(){
+        fetch('load_messages.php?chat_id=' + 
+document.getElementById('chat_id'.value)
+         .then(response => response.text ())
+         .then(html => {
+            document.getElementById('messages').innerHTML = html; 
+        });
+     }
+        // Load  messages on page load 
+        loadMassages();
+</script>
