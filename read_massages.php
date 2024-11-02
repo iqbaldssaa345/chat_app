@@ -66,8 +66,9 @@ document.getElementById('chat_id'.value)
          .then(response => response.text ())
          .then(html => {
             document.getElementById('messages').innerHTML = html; 
-        });
-     }
+         });
+
+        }
         // Load  messages on page load 
         loadMassages();
 </script>
