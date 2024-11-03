@@ -16,7 +16,7 @@ $stmt =$stmt->fetchAll();
     <?php foreach ($massages as $message): ?>
     <tr>
      <td><?= $massages['id'] ?></td>
-     <>
+     <td>
         <?php 
         $user_stmt = $pdo->prepare("SELECT username  FROM users WHERE id =?");
         $user_stmt->execute([$massages['user_id']]);
@@ -71,3 +71,23 @@ document.getElementById('chat_id'.value)
         // Load  messages on page load 
         loadMassages();
 </script>
+
+const socket = new websocket('ws://localhost:3000');
+
+socket.onmassages =function (event) {
+    loadMassages(); // Reload messages when a new message is received
+    
+};
+
+document.getElemntByid('messageFrom').addEventListener('submit', functi(e){
+    e.preventDefault();
+    
+    const messsageData = {
+        chat_id:  document.getElementyByid('chat_id').value;
+        user_id:  document.getElementyByid('user_id').value;
+        message:  document.getElementyByid('message_id').value;
+};
+
+socket.send(JSON.strigify(messsageData)); // send message through webSocket
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+});
